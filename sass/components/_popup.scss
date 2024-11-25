@@ -10,6 +10,12 @@
   visibility: hidden;
   transition: all .3s;
 
+  @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba($color-black, .3);
+  }
+
   &__content {
     @include absCenter;
 
@@ -22,11 +28,24 @@
     opacity: 0;
     transform: translate(-50%, -50%) scale(.25);
     transition: all .5s .2s;
+
+    @include respond(tab-port) {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   &__left {
     width: 33.3333%;
     display: table-cell;
+
+    @include respond(tab-port) {
+      display: flex;
+    }
+
+    @include respond(phone) {
+      width: 100%;
+    }
   }
 
   &__right {
@@ -34,6 +53,11 @@
     display: table-cell;
     vertical-align: middle;
     padding: 3rem 5rem;
+
+    @include respond(tab-port) {
+      width: 100%;
+      padding: .75rem .6rem;
+    }
   }
 
   &__img {
